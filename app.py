@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import base64
+from PIL import Image
 
 
 st.markdown('''
