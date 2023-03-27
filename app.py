@@ -21,6 +21,7 @@ st.image(image, caption='TIPS 2015')
 
 # Define o nome e os campos do arquivo CSV
 filename = "tips_2023_03.csv"
+filename2 = "socios.csv"
 fields = ["nome", "data_reserva", "data_pagto"]
 
 # Cria o arquivo CSV caso ainda não exista
@@ -31,6 +32,8 @@ except:
 
 # Lê os dados do arquivo CSV
 df = pd.read_csv(filename)
+df2 = pd.read_csv(filename2)
+
 
 # Exibe a lista de participantes
 st.write("Lista de participantes:")
@@ -38,7 +41,8 @@ st.write(df)
 
 # Adiciona um novo participante
 st.write("Adicionar novo participante:")
-new_name = st.text_input("Nome")
+# new_name = st.text_input("Nome")
+new_name = st.selectbox("Selecione um participante para o evento", options=df2["nome"])
 if st.button("Adicionar"):
     new_data = pd.DataFrame([[new_name, pd.Timestamp.now().strftime("%Y-%m-%d"), ""]], columns=fields)
     df = pd.concat([df, new_data], ignore_index=True)
